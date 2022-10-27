@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Data Source=FALL2022PDB;User ID=PS4;Proxy user id= /"Oracle.EntityFrameworkCore -OutputDir Models -ContextDir Data -Project "HERCULES.EF"  -Context "HERCULESOracleContext" -DataAnnotations -NoOnConfiguring -Force

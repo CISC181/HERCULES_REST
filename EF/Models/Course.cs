@@ -10,6 +10,7 @@ namespace HERCULES.EF.Models
 {
     [Table("COURSE")]
     [Index(nameof(Prerequisite), Name = "CRSE_CRSE_FK_I")]
+    [Index(nameof(CourseNo), Name = "CRSE_PK", IsUnique = true)]
     public partial class Course
     {
         public Course()
@@ -41,12 +42,13 @@ namespace HERCULES.EF.Models
         public string ModifiedBy { get; set; }
         [Column("MODIFIED_DATE", TypeName = "DATE")]
         public DateTime ModifiedDate { get; set; }
+        [Key]
         [Column("SCHOOL_ID")]
         public int SchoolId { get; set; }
         [Column("PREREQUISITE_SCHOOL_ID")]
         public int? PrerequisiteSchoolId { get; set; }
 
-        [ForeignKey(nameof(Prerequisite))]
+        [ForeignKey("Prerequisite,PrerequisiteSchoolId")]
         [InverseProperty(nameof(Course.InversePrerequisiteNavigation))]
         public virtual Course PrerequisiteNavigation { get; set; }
         [ForeignKey(nameof(SchoolId))]
@@ -54,7 +56,7 @@ namespace HERCULES.EF.Models
         public virtual School School { get; set; }
         [InverseProperty(nameof(Course.PrerequisiteNavigation))]
         public virtual ICollection<Course> InversePrerequisiteNavigation { get; set; }
-        [InverseProperty(nameof(Section.CourseNoNavigation))]
+        [InverseProperty(nameof(Section.Course))]
         public virtual ICollection<Section> Sections { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace HERCULES.Server.Data
         {
             base.OnModelCreating(builder);
 
-            builder.HasDefaultSchema("HERCULES")
+            builder.HasDefaultSchema("PS4")
                 .HasAnnotation("Relational:Collation", "USING_NLS_COMP");
 
             builder.ToUpperCaseTables();

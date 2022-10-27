@@ -8,26 +8,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HERCULES.EF.Models
 {
-    [Table("ENROLLMENT")]
-    [Index(nameof(StudentId), nameof(SectionId), Name = "ENR_PK", IsUnique = true)]
-    [Index(nameof(SectionId), Name = "ENR_SECT_FK_I")]
-    public partial class Enrollment
+    [Table("GRADE_TYPE_WEIGHT")]
+    public partial class GradeTypeWeight
     {
-        public Enrollment()
+        public GradeTypeWeight()
         {
             Grades = new HashSet<Grade>();
         }
 
         [Key]
-        [Column("STUDENT_ID")]
-        public int StudentId { get; set; }
+        [Column("SCHOOL_ID")]
+        public int SchoolId { get; set; }
         [Key]
         [Column("SECTION_ID")]
         public int SectionId { get; set; }
-        [Column("ENROLL_DATE", TypeName = "DATE")]
-        public DateTime EnrollDate { get; set; }
-        [Column("FINAL_GRADE")]
-        public byte? FinalGrade { get; set; }
+        [Key]
+        [Column("GRADE_TYPE_CODE")]
+        [StringLength(2)]
+        public string GradeTypeCode { get; set; }
+        [Column("NUMBER_PER_SECTION")]
+        public byte NumberPerSection { get; set; }
+        [Column("PERCENT_OF_FINAL_GRADE")]
+        public byte PercentOfFinalGrade { get; set; }
+        [Column("DROP_LOWEST")]
+        public bool DropLowest { get; set; }
         [Required]
         [Column("CREATED_BY")]
         [StringLength(30)]
@@ -40,20 +44,17 @@ namespace HERCULES.EF.Models
         public string ModifiedBy { get; set; }
         [Column("MODIFIED_DATE", TypeName = "DATE")]
         public DateTime ModifiedDate { get; set; }
-        [Key]
-        [Column("SCHOOL_ID")]
-        public int SchoolId { get; set; }
 
+        [ForeignKey("SchoolId,GradeTypeCode")]
+        [InverseProperty("GradeTypeWeights")]
+        public virtual GradeType GradeType { get; set; }
         [ForeignKey("SectionId,SchoolId")]
-        [InverseProperty(nameof(Section.Enrollments))]
+        [InverseProperty(nameof(Section.GradeTypeWeights))]
         public virtual Section S { get; set; }
-        [ForeignKey("StudentId,SchoolId")]
-        [InverseProperty(nameof(Student.Enrollments))]
-        public virtual Student SNavigation { get; set; }
         [ForeignKey(nameof(SchoolId))]
-        [InverseProperty("Enrollments")]
+        [InverseProperty("GradeTypeWeights")]
         public virtual School School { get; set; }
-        [InverseProperty(nameof(Grade.S))]
+        [InverseProperty(nameof(Grade.GradeTypeWeight))]
         public virtual ICollection<Grade> Grades { get; set; }
     }
 }

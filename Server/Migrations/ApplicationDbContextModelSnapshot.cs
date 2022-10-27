@@ -15,7 +15,7 @@ namespace HERCULES.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("HERCULES")
+                .HasDefaultSchema("PS4")
                 .HasAnnotation("Relational:Collation", "USING_NLS_COMP")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")

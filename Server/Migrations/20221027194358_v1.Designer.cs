@@ -10,14 +10,14 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace HERCULES.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221021044343_V1")]
-    partial class V1
+    [Migration("20221027194358_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("HERCULES")
+                .HasDefaultSchema("PS4")
                 .HasAnnotation("Relational:Collation", "USING_NLS_COMP")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.15")

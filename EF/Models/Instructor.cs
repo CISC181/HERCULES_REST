@@ -8,22 +8,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HERCULES.EF.Models
 {
-    [Table("STUDENT")]
-    [Index(nameof(StudentId), Name = "STU_PK", IsUnique = true)]
-    [Index(nameof(Zip), Name = "STU_ZIP_FK_I")]
-    public partial class Student
+    [Table("INSTRUCTOR")]
+    public partial class Instructor
     {
-        public Student()
+        public Instructor()
         {
-            Enrollments = new HashSet<Enrollment>();
+            Sections = new HashSet<Section>();
         }
 
         [Key]
-        [Column("STUDENT_ID")]
-        public int StudentId { get; set; }
+        [Column("SCHOOL_ID")]
+        public int SchoolId { get; set; }
+        [Key]
+        [Column("INSTRUCTOR_ID")]
+        public int InstructorId { get; set; }
         [Column("SALUTATION")]
         [StringLength(5)]
         public string Salutation { get; set; }
+        [Required]
         [Column("FIRST_NAME")]
         [StringLength(25)]
         public string FirstName { get; set; }
@@ -31,6 +33,7 @@ namespace HERCULES.EF.Models
         [Column("LAST_NAME")]
         [StringLength(25)]
         public string LastName { get; set; }
+        [Required]
         [Column("STREET_ADDRESS")]
         [StringLength(50)]
         public string StreetAddress { get; set; }
@@ -41,11 +44,6 @@ namespace HERCULES.EF.Models
         [Column("PHONE")]
         [StringLength(15)]
         public string Phone { get; set; }
-        [Column("EMPLOYER")]
-        [StringLength(50)]
-        public string Employer { get; set; }
-        [Column("REGISTRATION_DATE", TypeName = "DATE")]
-        public DateTime RegistrationDate { get; set; }
         [Required]
         [Column("CREATED_BY")]
         [StringLength(30)]
@@ -58,14 +56,14 @@ namespace HERCULES.EF.Models
         public string ModifiedBy { get; set; }
         [Column("MODIFIED_DATE", TypeName = "DATE")]
         public DateTime ModifiedDate { get; set; }
-        [Key]
-        [Column("SCHOOL_ID")]
-        public int SchoolId { get; set; }
 
         [ForeignKey(nameof(SchoolId))]
-        [InverseProperty("Students")]
+        [InverseProperty("Instructors")]
         public virtual School School { get; set; }
-        [InverseProperty(nameof(Enrollment.SNavigation))]
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        [ForeignKey(nameof(Zip))]
+        [InverseProperty(nameof(Zipcode.Instructors))]
+        public virtual Zipcode ZipNavigation { get; set; }
+        [InverseProperty(nameof(Section.Instructor))]
+        public virtual ICollection<Section> Sections { get; set; }
     }
 }

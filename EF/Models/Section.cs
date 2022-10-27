@@ -11,12 +11,14 @@ namespace HERCULES.EF.Models
     [Table("SECTION")]
     [Index(nameof(CourseNo), Name = "SECT_CRSE_FK_I")]
     [Index(nameof(InstructorId), Name = "SECT_INST_FK_I")]
+    [Index(nameof(SectionId), Name = "SECT_PK", IsUnique = true)]
     [Index(nameof(SectionNo), nameof(CourseNo), Name = "SECT_SECT2_UK", IsUnique = true)]
     public partial class Section
     {
         public Section()
         {
             Enrollments = new HashSet<Enrollment>();
+            GradeTypeWeights = new HashSet<GradeTypeWeight>();
         }
 
         [Key]
@@ -47,16 +49,22 @@ namespace HERCULES.EF.Models
         public string ModifiedBy { get; set; }
         [Column("MODIFIED_DATE", TypeName = "DATE")]
         public DateTime ModifiedDate { get; set; }
+        [Key]
         [Column("SCHOOL_ID")]
         public int SchoolId { get; set; }
 
-        [ForeignKey(nameof(CourseNo))]
-        [InverseProperty(nameof(Course.Sections))]
-        public virtual Course CourseNoNavigation { get; set; }
+        [ForeignKey("CourseNo,SchoolId")]
+        [InverseProperty("Sections")]
+        public virtual Course Course { get; set; }
+        [ForeignKey("SchoolId,InstructorId")]
+        [InverseProperty("Sections")]
+        public virtual Instructor Instructor { get; set; }
         [ForeignKey(nameof(SchoolId))]
         [InverseProperty("Sections")]
         public virtual School School { get; set; }
-        [InverseProperty(nameof(Enrollment.Section))]
+        [InverseProperty(nameof(Enrollment.S))]
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+        [InverseProperty(nameof(GradeTypeWeight.S))]
+        public virtual ICollection<GradeTypeWeight> GradeTypeWeights { get; set; }
     }
 }

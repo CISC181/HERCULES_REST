@@ -11,6 +11,7 @@ using System.Linq;
 using HERCULES.Server.Data;
 using HERCULES.Server.Models;
 using HERCULES.EF;
+using HERCULES.EF.Data;
 
 namespace HERCULES.Server
 {

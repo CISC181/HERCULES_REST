@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Telerik.DataSource;
 using Telerik.DataSource.Extensions;
 using SWARM.Shared;
+using HERCULES.EF.Data;
 
 namespace SWARM.Server.Controllers.Crse
 {

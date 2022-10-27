@@ -15,6 +15,11 @@ namespace HERCULES.EF.Models
         {
             Courses = new HashSet<Course>();
             Enrollments = new HashSet<Enrollment>();
+            GradeConversions = new HashSet<GradeConversion>();
+            GradeTypeWeights = new HashSet<GradeTypeWeight>();
+            GradeTypes = new HashSet<GradeType>();
+            Grades = new HashSet<Grade>();
+            Instructors = new HashSet<Instructor>();
             Sections = new HashSet<Section>();
             Students = new HashSet<Student>();
         }
@@ -43,6 +48,16 @@ namespace HERCULES.EF.Models
         public virtual ICollection<Course> Courses { get; set; }
         [InverseProperty(nameof(Enrollment.School))]
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+        [InverseProperty(nameof(GradeConversion.School))]
+        public virtual ICollection<GradeConversion> GradeConversions { get; set; }
+        [InverseProperty(nameof(GradeTypeWeight.School))]
+        public virtual ICollection<GradeTypeWeight> GradeTypeWeights { get; set; }
+        [InverseProperty(nameof(GradeType.School))]
+        public virtual ICollection<GradeType> GradeTypes { get; set; }
+        [InverseProperty(nameof(Grade.School))]
+        public virtual ICollection<Grade> Grades { get; set; }
+        [InverseProperty(nameof(Instructor.School))]
+        public virtual ICollection<Instructor> Instructors { get; set; }
         [InverseProperty(nameof(Section.School))]
         public virtual ICollection<Section> Sections { get; set; }
         [InverseProperty(nameof(Student.School))]

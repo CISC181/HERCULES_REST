@@ -1,0 +1,3 @@
+﻿Add-Migration v1 -Context ApplicationDbContext
+
+update-database -Context ApplicationDbContext

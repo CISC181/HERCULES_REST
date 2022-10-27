@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HERCULES.Server.Migrations
 {
-    public partial class V1 : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "HERCULES");
+                name: "PS4");
 
             migrationBuilder.CreateTable(
                 name: "ASP_NET_ROLES",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     ID = table.Column<string>(type: "NVARCHAR2(450)", nullable: false),
@@ -27,7 +27,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ASP_NET_USERS",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     ID = table.Column<string>(type: "NVARCHAR2(450)", nullable: false),
@@ -53,7 +53,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "DEVICE_CODES",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     USER_CODE = table.Column<string>(type: "NVARCHAR2(200)", maxLength: 200, nullable: false),
@@ -73,7 +73,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "PERSISTED_GRANTS",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     KEY = table.Column<string>(type: "NVARCHAR2(200)", maxLength: 200, nullable: false),
@@ -94,7 +94,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ASP_NET_ROLE_CLAIMS",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "NUMBER(10)", nullable: false)
@@ -109,7 +109,7 @@ namespace HERCULES.Server.Migrations
                     table.ForeignKey(
                         name: "FK_ASP_NET_ROLE_CLAIMS_ASP_NET_ROLES_ROLE_ID",
                         column: x => x.ROLE_ID,
-                        principalSchema: "HERCULES",
+                        principalSchema: "PS4",
                         principalTable: "ASP_NET_ROLES",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -117,7 +117,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ASP_NET_USER_CLAIMS",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "NUMBER(10)", nullable: false)
@@ -132,7 +132,7 @@ namespace HERCULES.Server.Migrations
                     table.ForeignKey(
                         name: "FK_ASP_NET_USER_CLAIMS_ASP_NET_USERS_USER_ID",
                         column: x => x.USER_ID,
-                        principalSchema: "HERCULES",
+                        principalSchema: "PS4",
                         principalTable: "ASP_NET_USERS",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -140,7 +140,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ASP_NET_USER_LOGINS",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     LOGIN_PROVIDER = table.Column<string>(type: "NVARCHAR2(128)", maxLength: 128, nullable: false),
@@ -154,7 +154,7 @@ namespace HERCULES.Server.Migrations
                     table.ForeignKey(
                         name: "FK_ASP_NET_USER_LOGINS_ASP_NET_USERS_USER_ID",
                         column: x => x.USER_ID,
-                        principalSchema: "HERCULES",
+                        principalSchema: "PS4",
                         principalTable: "ASP_NET_USERS",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -162,7 +162,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ASP_NET_USER_ROLES",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     USER_ID = table.Column<string>(type: "NVARCHAR2(450)", nullable: false),
@@ -174,14 +174,14 @@ namespace HERCULES.Server.Migrations
                     table.ForeignKey(
                         name: "FK_ASP_NET_USER_ROLES_ASP_NET_ROLES_ROLE_ID",
                         column: x => x.ROLE_ID,
-                        principalSchema: "HERCULES",
+                        principalSchema: "PS4",
                         principalTable: "ASP_NET_ROLES",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ASP_NET_USER_ROLES_ASP_NET_USERS_USER_ID",
                         column: x => x.USER_ID,
-                        principalSchema: "HERCULES",
+                        principalSchema: "PS4",
                         principalTable: "ASP_NET_USERS",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -189,7 +189,7 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ASP_NET_USER_TOKENS",
-                schema: "HERCULES",
+                schema: "PS4",
                 columns: table => new
                 {
                     USER_ID = table.Column<string>(type: "NVARCHAR2(450)", nullable: false),
@@ -203,7 +203,7 @@ namespace HERCULES.Server.Migrations
                     table.ForeignKey(
                         name: "FK_ASP_NET_USER_TOKENS_ASP_NET_USERS_USER_ID",
                         column: x => x.USER_ID,
-                        principalSchema: "HERCULES",
+                        principalSchema: "PS4",
                         principalTable: "ASP_NET_USERS",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -211,13 +211,13 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_ASP_NET_ROLE_CLAIMS_ROLE_ID",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "ASP_NET_ROLE_CLAIMS",
                 column: "ROLE_ID");
 
             migrationBuilder.CreateIndex(
                 name: "ROLENAMEINDEX",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "ASP_NET_ROLES",
                 column: "NORMALIZED_NAME",
                 unique: true,
@@ -225,31 +225,31 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_ASP_NET_USER_CLAIMS_USER_ID",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "ASP_NET_USER_CLAIMS",
                 column: "USER_ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ASP_NET_USER_LOGINS_USER_ID",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "ASP_NET_USER_LOGINS",
                 column: "USER_ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ASP_NET_USER_ROLES_ROLE_ID",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "ASP_NET_USER_ROLES",
                 column: "ROLE_ID");
 
             migrationBuilder.CreateIndex(
                 name: "EMAILINDEX",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "ASP_NET_USERS",
                 column: "NORMALIZED_EMAIL");
 
             migrationBuilder.CreateIndex(
                 name: "USERNAMEINDEX",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "ASP_NET_USERS",
                 column: "NORMALIZED_USER_NAME",
                 unique: true,
@@ -257,32 +257,32 @@ namespace HERCULES.Server.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_DEVICE_CODES_DEVICE_CODE",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "DEVICE_CODES",
                 column: "DEVICE_CODE",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DEVICE_CODES_EXPIRATION",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "DEVICE_CODES",
                 column: "EXPIRATION");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PERSISTED_GRANTS_EXPIRATION",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "PERSISTED_GRANTS",
                 column: "EXPIRATION");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PERSISTED_GRANTS_SUBJECT_ID_CLIENT_ID_TYPE",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "PERSISTED_GRANTS",
                 columns: new[] { "SUBJECT_ID", "CLIENT_ID", "TYPE" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PERSISTED_GRANTS_SUBJECT_ID_SESSION_ID_TYPE",
-                schema: "HERCULES",
+                schema: "PS4",
                 table: "PERSISTED_GRANTS",
                 columns: new[] { "SUBJECT_ID", "SESSION_ID", "TYPE" });
         }
@@ -291,39 +291,39 @@ namespace HERCULES.Server.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ASP_NET_ROLE_CLAIMS",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "ASP_NET_USER_CLAIMS",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "ASP_NET_USER_LOGINS",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "ASP_NET_USER_ROLES",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "ASP_NET_USER_TOKENS",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "DEVICE_CODES",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "PERSISTED_GRANTS",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "ASP_NET_ROLES",
-                schema: "HERCULES");
+                schema: "PS4");
 
             migrationBuilder.DropTable(
                 name: "ASP_NET_USERS",
-                schema: "HERCULES");
+                schema: "PS4");
         }
     }
 }
