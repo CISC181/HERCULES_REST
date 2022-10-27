@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using HERCULES.Server.Data;
 using HERCULES.Server.Models;
+using HERCULES.EF;
 
 namespace HERCULES.Server
 {
@@ -29,6 +30,13 @@ namespace HERCULES.Server
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseOracle(
                     Configuration.GetConnectionString("HERCULESConnection")));
+
+            services.AddDbContext<HERCULESOracleContext>(options =>
+    options.UseOracle(
+        Configuration.GetConnectionString("HERCULESConnection")));
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

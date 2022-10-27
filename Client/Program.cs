@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using HERCULES.Client.Services;
 
 namespace HERCULES.Client
 {
@@ -24,9 +25,13 @@ namespace HERCULES.Client
             // Supply HttpClient instances that include access tokens when making requests to the server project
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("HERCULES.ServerAPI"));
 
+            builder.Services.AddScoped<CourseService>();
+
             builder.Services.AddApiAuthorization();
 
             await builder.Build().RunAsync();
+
+
         }
     }
 }
